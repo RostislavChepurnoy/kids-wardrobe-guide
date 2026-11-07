@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Шкаф в детскую: 5 проверок до заказа</title>
+  <style>
+    :root {
+      --bg: #F7F6F2;
+      --card: #FFFFFF;
+      --text: #1C1C1E;
+      --muted: #6C6C70;
+      --accent: #2E6F40;
+      --accent-light: #E8F3EB;
+      --border: #E5E5EA;
+      --warn-bg: #FFF8EB;
+      --warn-border: #F5D08A;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 48px;
+    }
+
+    /* Липкий прогресс-бар */
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+
+    .progress-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 16px 0;
+    }
+
+    /* Шапка */
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+    }
+
+    .intro-quote {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      color: #3A3A3C;
+    }
+
+    /* Секции чек-листа */
+    .section-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .section-num {
+      background: var(--text);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .section-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-left: 38px;
+    }
+
+    /* Чекбоксы */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #FAFAFA;
+      border: 1px solid #EFEFF4;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .check-item:active {
+      transform: scale(0.99);
+    }
+
+    .check-item.checked {
+      background: var(--accent-light);
+      border-color: #C5E1CC;
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid #C7C7CC;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.2s ease;
+    }
+
+    .check-item.checked .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .check-box svg {
+      width: 14px;
+      height: 14px;
+      stroke: #fff;
+      stroke-width: 3;
+      fill: none;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s ease;
+    }
+
+    .check-item.checked .check-box svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .check-text {
+      font-size: 15px;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+
+    .check-text strong {
+      font-weight: 600;
+    }
+
+    .check-hint {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .check-item.checked .check-text {
+      color: #55755E;
+      text-decoration: line-through;
+    }
+
+    /* Бонус-блок */
+    .bonus-card {
+      background: #1C1C1E;
+      color: #FFFFFF;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    .bonus-card h2 {
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .bonus-sub {
+      font-size: 14px;
+      color: #AEAEB2;
+      margin-bottom: 16px;
+    }
+
+    .q-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .q-item {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 14.5px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .q-num {
+      color: #66D485;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .btn-copy {
+      width: 100%;
+      background: #66D485;
+      color: #0D2614;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-copy:active {
+      opacity: 0.85;
+    }
+
+    /* Подвал */
+    .footer-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .footer-card p {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .btn-download {
+      width: 100%;
+      margin-top: 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .btn-download:active {
+      opacity: 0.85;
+    }
+
+    .reset-btn {
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .sticky-bar {
+        position: static;
+        background: #fff;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .btn-download,
+      .reset-btn,
+      .btn-copy {
+        display: none !important;
+      }
+
+      .hero,
+      .section-card,
+      .bonus-card,
+      .footer-card {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Прогресс-бар -->
+  <div class="sticky-bar">
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span>Твой прогресс проверки</span>
+        <span id="progress-text">0 из 29</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Шапка -->
+    <div class="hero">
+      <span class="badge">Интерактивный чек-лист</span>
+      <h1>Шкаф в детскую: 5 проверок до заказа</h1>
+      <div class="intro-quote">
+        Привет! Это Ростислав 👋 Когда мы заказывали шкаф для Роберта, я понял простую вещь: в салоне мебель выбирают глазами по красивой картинке, а жить с этим шкафом потом с детскими руками. Здесь собрано всё, что стоит проверить заранее. Нажимай на пункты — галочки сохранятся прямо в твоём телефоне ✅
+      </div>
+    </div>
+
+    <!-- 1. Фасад -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>Фасад: краш-тест детскими руками</h2>
+      </div>
+      <p class="section-sub">Красивый матовый фасад в шоуруме может оказаться вечным сборщиком отпечатков дома.</p>
+      <ul class="checklist">
+        <li class="check-item" data-id="c1">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Возьми образец домой</strong><span class="check-hint">Не выбирай материал только под софитами в салоне.</span></div>
+        </li>
+        <li class="check-item" data-id="c2">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Тест на отпечатки</strong><span class="check-hint">Прижми ладонь на пару секунд, убери и посмотри на поверхность сбоку при свете из окна. Остался жирный след?</span></div>
+        </li>
+        <li class="check-item" data-id="c3">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Тест влажной салфеткой</strong><span class="check-hint">Проведи по образцу обычной влажной тряпкой: стирается ли след с первого раза без разводов?</span></div>
+        </li>
+        <li class="check-item" data-id="c4">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Проверка светом</strong><span class="check-hint">Посмотри на образец в детской днём и вечером при включённой лампе — оттенок может уйти в серый, зелёный или жёлтый.</span></div>
+        </li>
+        <li class="check-item" data-id="c5">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Чем отмывать творчество</strong><span class="check-hint">Спроси мастера заранее, чем можно мыть этот фасад (фломастеры, пластилин), а какая химия испортит покрытие.</span></div>
+        </li>
+        <li class="check-item" data-id="c6">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Краш-тест до установки</strong><span class="check-hint">Воду и устойчивость к царапинам проверяй на куске-образце, а не на уже собранном шкафу.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 2. Безопасность -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>Безопасность для ребёнка</h2>
+      </div>
+      <p class="section-sub">Для детей выдвинутые ящики — это лесенка. Конструкция должна прощать любые игры.</p>
+      <ul class="checklist">
+        <li class="check-item" data-id="c7">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Жёсткое крепление к стене</strong><span class="check-hint">Высокий шкаф обязан фиксироваться к стене, чтобы он ни при каких условиях не опрокинулся, если ребёнок полезет по полкам.</span></div>
+        </li>
+        <li class="check-item" data-id="c8">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Безопасные углы</strong><span class="check-hint">Проверь, есть ли скруглённые края или возможность аккуратно поставить защитные накладки.</span></div>
+        </li>
+        <li class="check-item" data-id="c9">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Ящики со стопорами и доводчиками</strong><span class="check-hint">Ящик не должен выпадать на ноги при резком рывке и не должен прищемлять пальцы.</span></div>
+        </li>
+        <li class="check-item" data-id="c10">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Плавное закрывание дверей</strong><span class="check-hint">Петли с доводчиками уберегут пальцы и избавят от громких хлопков.</span></div>
+        </li>
+        <li class="check-item" data-id="c11">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Стекло и зеркала с бронеплёнкой</strong><span class="check-hint">Подумай, нужны ли они в детской вообще. Если да — с обратной стороны обязательно должна быть противоосколочная плёнка.</span></div>
+        </li>
+        <li class="check-item" data-id="c12">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Атравматичные ручки</strong><span class="check-hint">Никаких острых граней и сильно выступающих углов на уровне головы или глаз ребёнка.</span></div>
+        </li>
+        <li class="check-item" data-id="c13">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Скрытые замки на опасных зонах</strong><span class="check-hint">Отсеки с аптечкой, бытовой химией или документами должны запираться.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 3. Материал и документы -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>Материал и экологичность</h2>
+      </div>
+      <p class="section-sub">Ребёнок спит в этой комнате по 9–10 часов в сутки — важно знать, из чего сделана плита.</p>
+      <ul class="checklist">
+        <li class="check-item" data-id="c14">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Конкретный бренд плиты</strong><span class="check-hint">Попроси назвать точный материал и производителя корпуса и фасадов (не просто «хорошее ЛДСП или МДФ»).</span></div>
+        </li>
+        <li class="check-item" data-id="c15">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Сертификаты и класс эмиссии</strong><span class="check-hint">Запроси документы на материалы: для детской подходят классы эмиссии формальдегида Е0.5 или Е1.</span></div>
+        </li>
+        <li class="check-item" data-id="c16">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Обработка всех торцов</strong><span class="check-hint">Даже невидимые задние кромки должны быть закрыты (лучше ПУР-клеем), чтобы плита не фонила и не разбухала.</span></div>
+        </li>
+        <li class="check-item" data-id="c17">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Отсутствие резкого запаха</strong><span class="check-hint">Понюхай образец и свежесобранные детали: едкого химического запаха быть не должно.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 4. Удобство -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>Эргономика и удобство для ребёнка</h2>
+      </div>
+      <p class="section-sub">Удобный шкаф приучает к порядку без напоминаний, неудобный — создаёт гору одежды на стуле.</p>
+      <ul class="checklist">
+        <li class="check-item" data-id="c18">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Зонирование по росту</strong><span class="check-hint">Повседневная одежда и нижнее бельё — на уровне рук ребёнка, сезонное и постельное — под потолок.</span></div>
+        </li>
+        <li class="check-item" data-id="c19">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Прямой доступ к ящикам</strong><span class="check-hint">Проверь, можно ли выдвинуть ящик, не распахивая при этом две соседние двери на 180 градусов.</span></div>
+        </li>
+        <li class="check-item" data-id="c20">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>План распределения вещей</strong><span class="check-hint">Заранее распиши, где будут лежать игрушки, школьные вещи, обувь и коробки «на вырост».</span></div>
+        </li>
+        <li class="check-item" data-id="c21">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Запас на 3–5 лет вперёд</strong><span class="check-hint">Предусмотри дополнительную перфорацию под полки и штангу, чтобы поднять их по мере роста ребёнка.</span></div>
+        </li>
+        <li class="check-item" data-id="c22">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Минимум открытых полок</strong><span class="check-hint">Реши заранее, что именно на них будет стоять, чтобы они не превратились в вечный визуальный шум.</span></div>
+        </li>
+        <li class="check-item" data-id="c23">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Свободный ход дверей</strong><span class="check-hint">Открытая дверца не должна биться о кровать, стол, люстру или перекрывать вход в комнату.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 5. Замеры, договор, приёмка -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>Замеры, договор и приёмка</h2>
+      </div>
+      <p class="section-sub">То, что защитит твои нервы, сроки и бюджет в день монтажа.</p>
+      <ul class="checklist">
+        <li class="check-item" data-id="c24">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Профессиональный замер на месте</strong><span class="check-hint">С лазерным уровнем, проверкой геометрии углов, учётом плинтусов, подоконников, розеток и выключателей.</span></div>
+        </li>
+        <li class="check-item" data-id="c25">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Детальная спецификация в договоре</strong><span class="check-hint">Прописаны точные размеры, артикулы цвета, материалы, марка фурнитуры, конечный срок и фиксированная цена.</span></div>
+        </li>
+        <li class="check-item" data-id="c26">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Прозрачная гарантия</strong><span class="check-hint">Понятно, сколько длится гарантия и распространяется ли она на регулировку фурнитуры.</span></div>
+        </li>
+        <li class="check-item" data-id="c27">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Логистика и монтаж под ключ</strong><span class="check-hint">Заранее ясно, входит ли подъём на этаж, сборка и уборка упаковки, и сколько времени это займёт.</span></div>
+        </li>
+        <li class="check-item" data-id="c28">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Регламент исправления косяков</strong><span class="check-hint">В договоре указан срок замены детали, если при доставке или сборке обнаружится скол.</span></div>
+        </li>
+        <li class="check-item" data-id="c29">
+          <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="check-text"><strong>Финальная приёмка при хорошем свете</strong><span class="check-hint">Открой каждый ящик и дверцу, проверь равномерность зазоров, крепление ручек, отсутствие сколов и царапин до подписания акта.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Бонус -->
+    <div class="bonus-card">
+      <h2>🎁 Бонус: 5 вопросов мастеру</h2>
+      <p class="bonus-sub">Скопируй этот список и отправь мебельщику перед заказом — по ответам сразу поймёшь уровень подхода:</p>
+      <ul class="q-list" id="questions-list">
+        <li class="q-item"><span class="q-num">1.</span><span>Какие именно материалы и плиты (бренд, класс эмиссии) вы используете для детских шкафов?</span></li>
+        <li class="q-item"><span class="q-num">2.</span><span>Как именно вы крепите высокие шкафы к стене для защиты от опрокидывания?</span></li>
+        <li class="q-item"><span class="q-num">3.</span><span>Какая фурнитура (производитель, серия) будет стоять на ящиках и дверцах?</span></li>
+        <li class="q-item"><span class="q-num">4.</span><span>Можно ли взять образец фасада домой на 1–2 дня, чтобы проверить его при нашем освещении?</span></li>
+        <li class="q-item"><span class="q-num">5.</span><span>В какие сроки вы меняете деталь или дорабатываете шкаф, если после установки найдутся замечания?</span></li>
+      </ul>
+      <button class="btn-copy" id="copy-btn" onclick="copyQuestions()">
+        <span>📋 Скопировать вопросы для мебельщика</span>
+      </button>
+    </div>
+
+    <!-- Финал -->
+    <div class="footer-card">
+      <p><strong>Было полезно?</strong> Напиши мне в комментариях под роликом, что ты добавил бы в этот список. Родители лучше всех знают, что ломается в детской первым 😅</p>
+      <p style="margin-bottom: 0;">Берегите себя ❤️</p>
+      <button class="btn-download" id="download-btn" type="button" onclick="downloadChecklist()">
+        <span>Скачать чек-лист с галочками</span>
+      </button>
+      <button class="reset-btn" type="button" onclick="resetChecklist()">Сбросить все галочки</button>
+    </div>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.check-item');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const STORAGE_KEY = 'kids_wardrobe_checklist_v1';
+
+    function loadState() {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      items.forEach(item => {
+        const id = item.getAttribute('data-id');
+        if (saved[id]) {
+          item.classList.add('checked');
+        }
+      });
+      updateProgress();
+    }
+
+    function saveState() {
+      const state = {};
+      items.forEach(item => {
+        const id = item.getAttribute('data-id');
+        state[id] = item.classList.contains('checked');
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const total = items.length;
+      const checked = document.querySelectorAll('.check-item.checked').length;
+      const percent = Math.round((checked / total) * 100);
+      progressFill.style.width = percent + '%';
+      progressText.textContent = `${checked} из ${total} (${percent}%)`;
+    }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('checked');
+        saveState();
+      });
+    });
+
+    function resetChecklist() {
+      items.forEach(item => item.classList.remove('checked'));
+      localStorage.removeItem(STORAGE_KEY);
+      updateProgress();
+    }
+
+    function downloadChecklist() {
+      const state = {};
+      items.forEach(item => {
+        state[item.getAttribute('data-id')] = item.classList.contains('checked');
+      });
+
+      const root = document.documentElement.cloneNode(true);
+      root.querySelectorAll('.check-item').forEach(item => {
+        const id = item.getAttribute('data-id');
+        item.classList.toggle('checked', !!state[id]);
+      });
+
+      const boot = document.createElement('script');
+      boot.textContent = 'try{localStorage.setItem(' + JSON.stringify(STORAGE_KEY) + ',' + JSON.stringify(JSON.stringify(state)) + ')}catch(e){}';
+      const main = root.querySelector('script');
+      main.parentNode.insertBefore(boot, main);
+
+      const html = '<!DOCTYPE html>\n' + root.outerHTML;
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'shkaf-v-detskuyu.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+
+      const btn = document.getElementById('download-btn');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<span>✅ Файл сохранён, галочки внутри</span>';
+      setTimeout(() => { btn.innerHTML = original; }, 2500);
+    }
+
+    function copyQuestions() {
+      const text = `Здравствуйте! Подскажите, пожалуйста, по детскому шкафу:\n1. Какие именно материалы и плиты (бренд, класс эмиссии) вы используете для детских шкафов?\n2. Как именно вы крепите высокие шкафы к стене для защиты от опрокидывания?\n3. Какая фурнитура (производитель, серия) будет стоять на ящиках и дверцах?\n4. Можно ли взять образец фасада домой на 1–2 дня, чтобы проверить его при нашем освещении?\n5. В какие сроки вы меняете деталь или дорабатываете шкаф, если после установки найдутся замечания?`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<span>✅ Скопировано! Отправь мебельщику</span>';
+        setTimeout(() => { btn.innerHTML = original; }, 2500);
+      });
+    }
+
+    loadState();
+  </script>
+</body>
+</html>
