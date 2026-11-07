@@ -364,75 +364,61 @@
     }
 
     /* Instagram */
-    .instagram-card {
+    .ig-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 22px 20px;
-      margin-top: 16px;
       border: 1px solid var(--border);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      padding: 20px 16px 16px;
+      margin-top: 16px;
       text-align: center;
     }
 
-    .instagram-card h2 {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
+    .ig-card h2 {
+      font-size: 18px;
+      font-weight: 700;
       margin-bottom: 6px;
     }
 
-    .instagram-handle {
-      display: inline-block;
-      color: var(--accent);
+    .ig-card .ig-sub {
       font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-
-    .instagram-copy {
-      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .instagram-shot {
+    .ig-shot-link {
       display: block;
-      width: 100%;
-      max-width: 360px;
-      margin: 0 auto 16px;
       border-radius: 14px;
-      border: 1px solid var(--border);
       overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
       text-decoration: none;
     }
 
-    .instagram-shot img {
+    .ig-shot-link img {
       display: block;
       width: 100%;
       height: auto;
-      vertical-align: top;
     }
 
-    .btn-instagram {
-      display: flex;
+    .btn-ig {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
       background: var(--accent);
       color: #fff;
-      border: none;
-      padding: 14px 18px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
       text-decoration: none;
+      border: none;
+      font-family: inherit;
       cursor: pointer;
     }
 
-    .btn-instagram:active {
-      opacity: 0.85;
+    .btn-ig:active {
+      opacity: 0.9;
     }
 
     @media print {
@@ -451,7 +437,7 @@
       .btn-download,
       .reset-btn,
       .btn-copy,
-      .btn-instagram {
+      .btn-ig {
         display: none !important;
       }
 
@@ -459,7 +445,7 @@
       .section-card,
       .bonus-card,
       .footer-card,
-      .instagram-card {
+      .ig-card {
         break-inside: avoid;
         box-shadow: none;
       }
@@ -532,7 +518,7 @@
         <div class="section-num">2</div>
         <h2>Безопасность для ребёнка</h2>
       </div>
-      <p class="section-sub">Для детей выдвинутые ящики — это лесенка. Крепление к стене не делает шкаф безопасным при любых играх.</p>
+      <p class="section-sub">Для детей выдвинутые ящики — это лесенка. Шкаф должен быть закреплён по инструкции производителя с крепежом под материал стены. Не позволяй ребёнку лазать по ящикам и полкам.</p>
       <ul class="checklist">
         <li class="check-item" data-id="c7">
           <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
@@ -571,7 +557,7 @@
         <div class="section-num">3</div>
         <h2>Материал и экологичность</h2>
       </div>
-      <p class="section-sub">Ребёнок спит в этой комнате по 9–10 часов в сутки — важно знать, из чего сделана плита.</p>
+      <p class="section-sub">Ребёнок спит в этой комнате по 9–10 часов в сутки — важно знать, из чего сделана плита. Класс эмиссии и отсутствие запаха сами по себе безопасность не подтверждают: нужны документы о соответствии готовой мебели требованиям для детской.</p>
       <ul class="checklist">
         <li class="check-item" data-id="c14">
           <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
@@ -689,15 +675,14 @@
     </div>
 
     <!-- Instagram -->
-    <div class="instagram-card">
-      <h2>Мебель под заказ</h2>
-      <a class="instagram-handle" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer">@kuhni_prossto.by</a>
-      <p class="instagram-copy">Лида / Гродно — кухни и корпусная мебель под заказ</p>
-      <a class="instagram-shot" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer" aria-label="Открыть Instagram kuhni_prossto.by">
-        <img src="media/kuhni-prossto-instagram.jpg" alt="Профиль Instagram kuhni_prossto.by — мебель под заказ, Лида и Гродно" width="900" height="1955" loading="lazy">
+    <section class="ig-card" aria-label="Instagram kuhni_prossto.by">
+      <h2>Мебель под заказ — Лида / Гродно</h2>
+      <p class="ig-sub">@kuhni_prossto.by — шкафы, кухни и рассрочка</p>
+      <a class="ig-shot-link" href="https://www.instagram.com/kuhni_prossto.by/" target="_blank" rel="noopener noreferrer">
+        <img src="kuhni-prossto-instagram.png" alt="Профиль Instagram kuhni_prossto.by" width="600" loading="lazy">
       </a>
-      <a class="btn-instagram" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer">Открыть Instagram</a>
-    </div>
+      <a class="btn-ig" href="https://www.instagram.com/kuhni_prossto.by/" target="_blank" rel="noopener noreferrer">Открыть Instagram</a>
+    </section>
   </div>
 
   <script>
