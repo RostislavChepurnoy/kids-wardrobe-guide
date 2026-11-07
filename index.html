@@ -363,6 +363,78 @@
       cursor: pointer;
     }
 
+    /* Instagram */
+    .instagram-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      text-align: center;
+    }
+
+    .instagram-card h2 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .instagram-handle {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+
+    .instagram-copy {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .instagram-shot {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .instagram-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+
+    .btn-instagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-instagram:active {
+      opacity: 0.85;
+    }
+
     @media print {
       body {
         background: #fff;
@@ -378,14 +450,16 @@
 
       .btn-download,
       .reset-btn,
-      .btn-copy {
+      .btn-copy,
+      .btn-instagram {
         display: none !important;
       }
 
       .hero,
       .section-card,
       .bonus-card,
-      .footer-card {
+      .footer-card,
+      .instagram-card {
         break-inside: avoid;
         box-shadow: none;
       }
@@ -612,6 +686,17 @@
         <span>Скачать чек-лист с галочками</span>
       </button>
       <button class="reset-btn" type="button" onclick="resetChecklist()">Сбросить все галочки</button>
+    </div>
+
+    <!-- Instagram -->
+    <div class="instagram-card">
+      <h2>Мебель под заказ</h2>
+      <a class="instagram-handle" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer">@kuhni_prossto.by</a>
+      <p class="instagram-copy">Лида / Гродно — кухни и корпусная мебель под заказ</p>
+      <a class="instagram-shot" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer" aria-label="Открыть Instagram kuhni_prossto.by">
+        <img src="media/kuhni-prossto-instagram.jpg" alt="Профиль Instagram kuhni_prossto.by — мебель под заказ, Лида и Гродно" width="900" height="1955" loading="lazy">
+      </a>
+      <a class="btn-instagram" href="https://www.instagram.com/kuhni_prossto.by" target="_blank" rel="noopener noreferrer">Открыть Instagram</a>
     </div>
   </div>
 
